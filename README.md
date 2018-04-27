@@ -1,1 +1,3 @@
 # MyNodeBlog
+这是一个基于Node.js的简单博客系统
+使用了expree作为前端，mongodb作为数据库进行处理，ueditor作为富文本编辑器
