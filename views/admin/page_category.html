@@ -1,0 +1,21 @@
+<!--封装的一个page模板-->
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li>
+            <a href="/admin/category?page={{page-1}}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% for pagea in pagearr%}
+        <li><a href="/admin/category?page={{pagea}}">{{pagea}}</a></li>
+        {% endfor %}
+        <li>
+            <a href="/admin/category?page={{page + 1}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+
+        <li>一共有{{count}}条数据，每页显示{{limit}}条数据，一共{{pagearr.length}}页，当前第{{page}}页</li>
+    </ul>
+</nav>
