@@ -16,6 +16,9 @@ h6 {
 button {
   border: none;
 }
+#Mycanvas{
+  position:absolute;z-index:-2;
+}
 
 .bgDefault {
   background-color: #515151!important;
@@ -123,6 +126,7 @@ button {
 }
 .clear {
   *zoom: 1;
+  /*background-image: url('/public/images/books.jpg');*/
 }
 header {
   height: 222px;

@@ -19,10 +19,11 @@
 </head>
 
 <body>
-
+<canvas id="Mycanvas"></canvas>
+<script src="/public/js/BackgroundAdd.js"></script>
 <header>
-    <div class="backimg"><img src="/public/images/IMG_0293.JPG"></div>
-    <div class="logo"><span></span><img src="/public/images/00002637.png"></div>
+    <div class="backimg"><img src="/public/images/水墨背景.jpg"height="200" width="1000"></div>
+    <div class="logo"><span></span><img src="/public/images/true.jpg" height="100" width="300"></div>
 </header>
 
 <nav>
@@ -46,6 +47,7 @@
 
 
 <main class="clear">
+
     <div>
         <button type="button" class="btn btn-primary" id="create">新建文章</button>
     </div>
@@ -100,9 +102,9 @@
         {% endif %}
 
         <div class="rightBox">
-            <div class="title"><span>社区</span></div>
-            <p><a href="http://www.miaov.com" target="_blank" class="colDanger">妙味课堂</a></p>
-            <p><a href="http://bbs.miaov.com" target="_blank" class="colDanger">妙味茶馆</a></p>
+            <div class="title"><span>关于我</span></div>
+            <p><a href="" class="colDanger" onclick="alert('wangyongxiaozi@outlook.com')">我的邮箱</a></p>
+            <p><a href="" class="colDanger" onclick="alert('没做好')">留言板</a></p>
         </div>
     </div>
 
