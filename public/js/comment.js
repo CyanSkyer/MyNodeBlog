@@ -114,3 +114,17 @@ function formData(time) {
     var date = new Date(time);
     return date.getFullYear()+'年'+date.getMonth()+'月'+date.getDay()+'日'+date.getHours()+':'+date.getMinutes()+';'+date.getSeconds();
 }
+
+//点击修改的处理
+$('#editcontent').on("click",function () {
+    var contentId = $('#contentId').val();
+    var userName = $('#hideusername').val();
+    var contentusername = $('#hidecontentusername').val();
+    if(userName != contentusername){
+        alert('抱歉，您不是文章作者')
+    }else if(contentusername!='admin'){
+       window.location.href = ("/admin_user/content/edit?id="+contentId)
+    }else{
+        window.location.href = ("/admin/content/edit?id="+contentId)
+    }
+})

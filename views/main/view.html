@@ -2,22 +2,28 @@
 {% block mainleft%}
 
 <input type="hidden" id="contentId" value="{{content.id}}">
-
+<input type="hidden" id="hidval" value="{{content.content}}">
+<input type="hidden" id="hideusername" value="{{userInfo.username}}">
+<input type="hidden" id="hidecontentusername" value="{{content.user.username}}">
 <div class="listBox">
+
     <h1>{{content.title}}</h1>
     <p class="colDefault">
         分类：<span class="colInfo">{{content.category.name}}</span> -
         作者：<span class="colInfo">{{content.user.username}}</span> -
         时间：<span class="colInfo">{{content.addTime|date('y年m月d日h时i分s秒',-20*60)}}</span> -
         阅读：<span class="colInfo">{{content.views}}</span> -
-        评论：<span class="colInfo">{{content.comments.length}}</span>
+        评论：<span class="colInfo">{{content.comments.length}}</span>-
+        <a href="javascript:;" id="editcontent" name="editcontent">修改</a>
+        <!--<button type="button" class="btn btn-link" id="editcontent">修改</button>-->
     </p>
-    <input type="hidden" id="hidval" value="{{content.content}}">
+
     <dfn><p id="indexcontent"></p></dfn>
     <script>
         var content = document.getElementById('hidval').value;
         document.getElementById('indexcontent').innerHTML = content;
     </script>
+
 </div>
 
 <!--评论-->
