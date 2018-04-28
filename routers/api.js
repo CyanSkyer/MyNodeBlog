@@ -25,9 +25,9 @@ var responseData = {
 // })
 
 
-router.get('/' ,function (req ,res ,next) {
-    res.send('这是首页')
-})
+// router.get('/' ,function (req ,res ,next) {
+//     res.send('这是首页')
+// })
 
 /*
 * 用户注册
@@ -91,7 +91,7 @@ router.post('/user/register' , function (req , res , next) {
                     username: username,
                     password: password
                 });
-                console.log(userInfo);
+
                 user.save();
                 //注册成功
                 responseData.code = 0;
@@ -196,10 +196,5 @@ router.post('/comment/post',function (req , res) {
         res.json(responseData);
     })
 })
-
-
-
-
-
 
 module.exports = router;

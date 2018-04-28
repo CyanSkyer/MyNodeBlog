@@ -112,14 +112,6 @@ app.use("/public/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (
         res.redirect('/public/ueditor/nodejs/config.json');
     }
 }));
-
-
-
-
-
-
-
-
 //注明：app.use里面的第二个参数既可以是函数也可以是对象，但app.get()只能是函数
 //另：现在不用app.get()了，还是都用app.use吧。
 /*
