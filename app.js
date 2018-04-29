@@ -143,7 +143,7 @@ mongoose.connect('mongodb://localhost:27017/Blog' , function (err) {
     }
 })
 
-
+module.exports = app;
 
 
 
