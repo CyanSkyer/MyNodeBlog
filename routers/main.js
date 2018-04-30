@@ -85,5 +85,16 @@ router.get('/view' , function (req,res,next) {
     })
 })
 
+//留言板处理
+router.get('/messboard',function (req ,res ,next) {
+    var contentname = 'messboard';
+    Content.findOne({
+        title:'留言板'
+    }).populate(['category','user']).then(function (content) {
+        data.content = content;
+        res.render('main/messboard',data)
+    })
+})
+
 
 module.exports = router;

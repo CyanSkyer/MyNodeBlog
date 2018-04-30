@@ -87,48 +87,38 @@ router.post('/content/add',function (req ,res ,next) {
             userInfo : req.userInfo,
             errmessage : '标题为空'
         })
-    }
-    if (!description){
-        res.render('admin/err',{
-            userInfo : req.userInfo,
-            errmessage : '简介为空'
-        })
-    }
-    if (!content){
-        res.render('admin/err',{
-            userInfo : req.userInfo,
-            errmessage : '内容为空'
+    }else{
+        //保存内容到数据库
+        Content.findOne({
+            title :title
+        }).then(function (value) {
+            if(value){
+                res.render('admin_user/err',{
+                    userInfo : req.userInfo,
+                    errmessage : '添加的内容标题重复',
+                })
+                return ;
+            }else{
+                var contents = new Content({
+                    category:category,
+                    title :title,
+                    user : req.userInfo._id,
+                    addTime : new Date(),
+                    description:description,
+                    content:content
+                })
+                contents.save().then(function () {
+                    res.render('admin_user/success',{
+                        userInfo : req.userInfo,
+                        errmessage : '内容保存成功',
+                        url : '/admin_user/content',
+                    })
+                });
+            }
         })
     }
 
-    //保存内容到数据库
-    Content.findOne({
-        title :title
-    }).then(function (value) {
-        if(value){
-            res.render('admin_user/err',{
-                userInfo : req.userInfo,
-                errmessage : '添加的内容标题重复',
-            })
-            return ;
-        }else{
-            var contents = new Content({
-                category:category,
-                title :title,
-                user : req.userInfo._id,
-                addTime : new Date(),
-                description:description,
-                content:content
-            })
-            contents.save().then(function () {
-                res.render('admin_user/success',{
-                    userInfo : req.userInfo,
-                    errmessage : '内容保存成功',
-                    url : '/admin_user/content',
-                })
-            });
-        }
-    })
+
 })
 
 /*

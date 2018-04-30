@@ -3,6 +3,7 @@
 
 
 {% for content in contents%}
+{% if content.title != '留言板'%}
 <div class="listBox">
     <h1>{{content.title}}</h1>
     <p class="colDefault">
@@ -16,6 +17,7 @@
     <dfn><p>{{content.description}}</p></dfn>
     <div class="function"><a href="/view/?contentId={{content._id.toString()}}">阅读全文</a></div>
 </div>
+{% endif%}
 {% endfor%}
 
 
