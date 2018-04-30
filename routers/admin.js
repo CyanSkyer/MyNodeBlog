@@ -442,20 +442,6 @@ router.post('/content/edit',function (req,res,next) {
             errmessage : '标题为空'
         })
         return ;
-    }else
-    if (!description){
-        res.render('admin/err',{
-            userInfo : req.userInfo,
-            errmessage : '简介为空'
-        })
-        return ;
-    }else
-    if (!content){
-        res.render('admin/err',{
-            userInfo : req.userInfo,
-            errmessage : '内容为空'
-        })
-        return ;
     }
 
     //获取要修改的分类的信息
