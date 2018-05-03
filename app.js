@@ -84,6 +84,7 @@ app.use('/admin_user',require('./routers/admin_user'));
 app.use('/api' , require('./routers/api'));
 app.use('/' , require('./routers/main'));
 
+//ue编辑器的载入
 app.use("/public/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
     //客户端上传文件设置
     var imgDir = '/images/ueditor/'

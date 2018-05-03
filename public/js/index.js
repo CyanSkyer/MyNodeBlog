@@ -30,6 +30,7 @@ $(function () {
                 username : $registerBox.find('[name = "username"]').val(),
                 password : $registerBox.find('[name = "password"]').val(),
                 repassword : $registerBox.find('[name = "repassword"]').val(),
+                nickname : $registerBox.find('[name = "nickname"]').val()
             },
             success : function (result) {
                 $registerBox.find('.colWarning').html(result.message);
@@ -53,8 +54,7 @@ $(function () {
             url: '/api/user/login',
             data:{
                 username : $loginBox.find('[name = "username"]').val(),
-                password : $loginBox.find('[name = "password"]').val()
-
+                password : $loginBox.find('[name = "password"]').val(),
             },
             success: function (result) {
 

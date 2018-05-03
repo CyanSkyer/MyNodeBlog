@@ -51,6 +51,8 @@ router.post('/user/register' , function (req , res , next) {
     var username = req.body.username;
     var password = req.body.password;
     var repassword = req.body.repassword;
+    var nickname = req.body.nickname;
+    console.log(nickname);
 
     //用户名判空
     if(username ==''){
@@ -69,6 +71,11 @@ router.post('/user/register' , function (req , res , next) {
         responseData.message = '两次输入的密码不一致';
         res.json(responseData);
         return;
+    }else if(nickname == ''){//密码判重
+        responseData.code = 1;
+        responseData.message = '昵称未填写';
+        res.json(responseData);
+        return;
     }
 
         //拉通数据库，判定数据库中用户名是否已经被注册了
@@ -76,12 +83,12 @@ router.post('/user/register' , function (req , res , next) {
         * findOne返回的是一个promise对象
          */
         User.findOne({
-            username: username
+            "$or":[{username: username},{nickname:nickname}]
         }).then(function (userInfo , reject ) {
             if (userInfo) {
                 //表示数据库中有该记录
                 responseData.code = 4;
-                responseData.message = '用户名已经被注册';
+                responseData.message = '用户名或密码已经被注册';
                 res.json(responseData);
                 return;
             }else {
@@ -89,7 +96,8 @@ router.post('/user/register' , function (req , res , next) {
                 //现在将其保存在数据库中
                 var user = new User({
                     username: username,
-                    password: password
+                    password: password,
+                    nickname: nickname,
                 });
 
                 user.save();
@@ -133,7 +141,8 @@ router.post('/user/login',function (req , res , next) {
         responseData.message = '登陆成功';
         responseData.userInfo = {
             _id : data._id,
-            username : data.username
+            username : data.username,
+            nickname : data.nickname
         };
         //此处为原版
         // req.cookies.set('userInfo' , JSON.stringify({
@@ -143,7 +152,8 @@ router.post('/user/login',function (req , res , next) {
         //此处为了cookie-parser实验
         res.cookie('userInfo' , JSON.stringify({
             _id : data._id,
-            username : data.username
+            username : data.username,
+            nickname : data.nickname
         }));
 
         res.json(responseData);
@@ -166,7 +176,6 @@ router.get('/comment',function (req ,res) {
     Content.findOne({
         _id : contentId
     }).then(function (content) {
-
         responseData.data = content.comments;
         res.json(responseData);
     })
@@ -179,7 +188,7 @@ router.post('/comment/post',function (req , res) {
     //本文章的id
     var contentId = req.body.contentId;
     var postData = {
-        username : req.userInfo.username,
+        nickname : req.userInfo.nickname,
         postTime : new Date(),
         content : req.body.content, //评论的内容
     }

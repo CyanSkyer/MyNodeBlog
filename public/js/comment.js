@@ -3,7 +3,7 @@
  */
 
 
-var limit = 2 ;//一次显示4条评论
+var limit = 4 ;//一次显示4条评论
 var page =1; //当前第几页
 var totalpages=0 ;//总的页数
 
@@ -95,7 +95,7 @@ function renderComment() {
     var html='';
     for(var i =start;i<end;i++){
         html+='<div class="messageBox">'+
-            '<p class="name clear"><span class="fl">'+myComments[i].username+'</span><span class="fr">' +
+            '<p class="name clear"><span class="fl">'+myComments[i].nickname+'</span><span class="fr">' +
             formData(myComments[i].postTime)+'</span></p><p>' + myComments[i].content+'</p></div>'
     }
 
