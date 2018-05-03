@@ -112,7 +112,8 @@ function renderComment() {
 //对于时间的处理
 function formData(time) {
     var date = new Date(time);
-    return date.getFullYear()+'年'+date.getMonth()+'月'+date.getDay()+'日'+date.getHours()+':'+date.getMinutes()+';'+date.getSeconds();
+    var month = date.getMonth()+1;//getMonth是从0开始算成1月的
+    return date.getFullYear()+'年'+month+'月'+date.getDate()+'日 '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
 }
 
 //点击修改的处理

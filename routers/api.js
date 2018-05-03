@@ -183,7 +183,6 @@ router.post('/comment/post',function (req , res) {
         postTime : new Date(),
         content : req.body.content, //评论的内容
     }
-
     //查询当前文章的信息
     Content.findOne({
         _id : contentId
