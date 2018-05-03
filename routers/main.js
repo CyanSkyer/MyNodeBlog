@@ -96,5 +96,15 @@ router.get('/messboard',function (req ,res ,next) {
     })
 })
 
+//使用手册与更新处理
+router.get("/explanation",function (req,res,next) {
+    Content.findOne({
+        title:'使用手册与更新'
+    }).populate(['category','user']).then(function (content) {
+        data.content = content;
+        res.render('main/explanation',data)
+    })
+})
+
 
 module.exports = router;

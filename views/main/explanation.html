@@ -1,0 +1,63 @@
+{% extends 'layout.html'%}
+{% block mainleft%}
+
+<input type="hidden" id="contentId" value="{{content.id}}">
+<input type="hidden" id="hidval" value="{{content.content}}">
+<input type="hidden" id="hideusername" value="{{userInfo.username}}">
+<input type="hidden" id="hidecontentusername" value="{{content.user.username}}">
+<div class="listBox">
+
+    <h1>{{content.title}}</h1>
+    <p class="colDefault">
+        分类：<span class="colInfo">{{content.category.name}}</span> -
+        作者：<span class="colInfo">{{content.user.nickname}}</span> -
+        时间：<span class="colInfo">{{content.addTime|date('y年m月d日h时i分s秒',-20*60)}}</span> -
+        阅读：<span class="colInfo">{{content.views}}</span> -
+        评论：<span class="colInfo">{{content.comments.length}}</span>-
+        <a href="javascript:;" id="editcontent" name="editcontent">修改</a>
+        <!--<button type="button" class="btn btn-link" id="editcontent">修改</button>-->
+    </p>
+
+    <dfn><p id="indexcontent"></p></dfn>
+    <script>
+        var content = document.getElementById('hidval').value;
+        document.getElementById('indexcontent').innerHTML = content;
+    </script>
+
+</div>
+
+<!--评论-->
+<div class="listBox message">
+    <h3 class="textLeft"><strong>评论</strong> <span class="em">一共有 <em id="messageCount" name="messageCount">0</em>条评论</span></h3>
+
+    {% if userInfo._id %}
+    <p class="textLeft">{{userInfo.nickname}}</p>
+    <p class="textLeft clear">
+        <textarea id="messageContent" name="messageContent"></textarea>
+
+        <button id="messageBtn" class="submit">提交</button>
+    </p>
+    {%else%}
+    <p class="bgDanger" style="line-height: 30px;">你还没有登录，请先登录！</p>
+    {%endif%}
+
+    <div class="messageList">
+    </div>
+
+    <div class="pager">
+        <ul class="clear">
+            <li class="previous">
+                <a href="">上一页</a>
+            </li>
+            <li></li>
+            <li class="next">
+                <a href="">下一页</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<script src="/public/js/comment.js"></script>
+{% endblock %}
