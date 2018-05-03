@@ -46,13 +46,11 @@ var responseData = {
 *
  */
 router.post('/user/register' , function (req , res , next) {
-    //console.log(req.body);
     //用前端的name属性来定义body中的名称
     var username = req.body.username;
     var password = req.body.password;
     var repassword = req.body.repassword;
     var nickname = req.body.nickname;
-    console.log(nickname);
 
     //用户名判空
     if(username ==''){
