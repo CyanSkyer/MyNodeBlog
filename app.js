@@ -25,9 +25,14 @@ var User = require('./models/User');
 var path = require('path');
 
 
+
 //设置静态文件托管
 //当用户访问的url以/public开始的时候，那么直接返回对应__dirname + '/public'下的文件
-app.use('/public' , express.static(__dirname + '/public'));
+// app.enable('trust proxy');
+var staticDir = path.join(__dirname, 'public');
+app.enable('trust proxy');
+app.use('/public', express.static(staticDir));
+// app.use('/public' , express.static(__dirname + '/public'));
 
 
 //配置应用模板
