@@ -149,7 +149,7 @@ router.get('/content/edit',function (req,res,next) {
     })
 })
 /*
-* 修改后保存
+* 内容修改后保存
  */
 router.post('/content/edit',function (req,res,next) {
     var id = req.query.id || '';
@@ -191,6 +191,7 @@ router.post('/content/edit',function (req,res,next) {
                 title : title,
                 description : description,
                 content : content,
+                addTime: new Date(),
             })
         }
     }).then(function () {

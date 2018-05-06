@@ -486,6 +486,7 @@ router.post('/content/edit',function (req,res,next) {
                 title : title,
                 description : description,
                 content : content,
+                addTime: new Date(),
             })
         }
     }).then(function () {

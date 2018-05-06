@@ -35,7 +35,7 @@ router.use(function (req,res,next) {
         title:'留言板'
     }).populate(['category','user']).then(function (content) {
         // data.latestcomments = content.comments;
-        tmparr = content.comments;
+        tmparr = content.comments.reverse();
         for(var i=0;i<3;i++){
             data.latestcommentsarr[i] = tmparr[i];
         }
