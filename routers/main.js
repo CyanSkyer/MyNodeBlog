@@ -16,11 +16,30 @@ router.use(function (req,res,next) {
     data = {
         userInfo : req.userInfo,
         categories:[],
+        latestcommentsarr:[],
     }
     //读取所有的分类信息，并展现在导航栏
     Category.find().then(function (categories) {
          data.categories = categories
-         next();
+
+    })
+
+    //最热文章
+    Content.find({title:{$ne:"留言板"}}).sort({views:-1}).limit(5).populate(['category' , 'user']).then(function (hotcontents) {
+        data.hotcontents = hotcontents;
+    })
+
+    //最新评论
+    var tmparr = new Array();
+    Content.findOne({
+        title:'留言板'
+    }).populate(['category','user']).then(function (content) {
+        // data.latestcomments = content.comments;
+        tmparr = content.comments;
+        for(var i=0;i<3;i++){
+            data.latestcommentsarr[i] = tmparr[i];
+        }
+        next();
     })
 })
 /*
@@ -33,7 +52,7 @@ router.get('/' ,function (req ,res ,next) {
         data.page = Number(req.query.page || 1);
         data.totalpages = 0 ;//总页数
         data.coutn = 0;//数据总数
-        data.limit =4;
+        data.limit =5;
         data.pagearr =[];
 
         //添加年份归档
@@ -54,6 +73,10 @@ router.get('/' ,function (req ,res ,next) {
         startyear = new Date(data.year,0,1);
         endyear = new Date(data.year,11,31);
     }
+
+
+
+
 
     Content.where(where).where("addTime").gte(startyear).lte(endyear).count().then(function (count) {
         data.count = count;
@@ -76,15 +99,12 @@ router.get('/' ,function (req ,res ,next) {
         data.contents = contents;
         res.render('main/index' , data);
     })
-
-
 })
 
 
 //阅读全文管理
 router.get('/view' , function (req,res,next) {
     var contentId = req.query.contentId ;
-
     Content.findOne({
         _id:contentId
     }).populate(['category','user']).then(function (content) {

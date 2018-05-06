@@ -41,7 +41,7 @@ router.get('/user',function (req,res,next) {
 
     //req.query : 获取前端url中'?'之后传递过来的相关数字
     var page = Number(req.query.page || 1);
-    var limit = 2;
+    var limit = 5;
 
 
     var totalpages = 0;//总页数
@@ -79,12 +79,29 @@ router.get('/user',function (req,res,next) {
 })
 
 /*
+* 用户管理的删除
+ */
+router.get('/user/delete',function (req ,res ,next) {
+    var id = req.query.id ||'';
+
+    User.remove({
+        _id :id
+    }).then(function () {
+        res.render('admin/success',{
+            userInfo : req.userInfo,
+            errmessage : '删除成功',
+            url : '/admin/user',
+        })
+    })
+})
+
+/*
 * 分类首页
  */
 router.get('/category' , function (req ,res ,next) {
 
     var page = Number(req.query.page || 1);
-    var limit = 4;
+    var limit = 5;
     var totalpages = 0;//总页数
     Category.count().then(function (count) {
         //计算总页数
@@ -296,7 +313,7 @@ router.get('/category/delete',function (req,res,next){
 router.get('/content',function (req ,res ,next) {
 
     var page = Number(req.query.page || 1);
-    var limit = 4;
+    var limit = 5;
     var totalpages = 0;
     Content.count().then(function (count) {
         //计算总页数
@@ -427,7 +444,7 @@ router.get('/content/edit',function (req,res,next) {
 })
 
 /*
-* 修改保存
+* 内容修改保存
  */
 router.post('/content/edit',function (req,res,next) {
     var id = req.query.id || '';
@@ -497,5 +514,8 @@ router.get('/content/delete',function (req ,res ,next) {
         })
     })
 })
+
+
+
 
 module.exports = router;

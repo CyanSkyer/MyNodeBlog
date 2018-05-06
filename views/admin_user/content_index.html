@@ -25,7 +25,7 @@
         <td>{{content._id.toString()}}</td>
         <td>{{content.category.name}}</td>
         <td>{{content.title}}</td>
-        <td>{{content.user.username}}</td>
+        <td>{{content.user.nickname}}</td>
         <!--注意，这里的date是模板引擎写好的一个方法，第一个参数为时间Object，第二个参数为年月日-->
         <td>{{content.addTime|date('y年m月d日h时i分s秒',-20*60)}}</td>
         <td>{{content.views}}</td>

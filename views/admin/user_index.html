@@ -28,6 +28,9 @@
                 否
             {%endif%}
         </td>
+        <td>
+            <a href="/admin/user/delete?id={{user._id.toString()}}">删除</a>
+        </td>
     </tr>
     {% endfor%}
 </table>

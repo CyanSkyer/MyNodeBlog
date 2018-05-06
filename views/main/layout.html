@@ -30,6 +30,7 @@
 
 <nav>
     <div class="menu">
+        <a href="/" class="label label-primary">CyanSky</a>
         {% if category == '' %}
         <a href="/" class="focus">首页</a>
         {% else%}
@@ -98,13 +99,36 @@
             <p class="textRight">已有账号？<a href="javascript:;" class="colMint">马上登录</a>　</p>
             <p class="colWarning textCenter"></p>
         </div>
-
         {% endif %}
+
+        <!--最热文章功能-->
+        <div class="rightBox">
+            <div class="title"><span>最热文章</span></div>
+            {% for hotcontent in hotcontents%}
+            <p><a href="/view/?contentId={{hotcontent.id}}" class="colDanger" id="hot">{{hotcontent.title}}</a><span style="float:right">浏览量：{{hotcontent.views}}</span></p>
+
+            {% endfor%}
+        </div>
+        <!--最新评论功能-->
+        <div class="rightBox">
+            <div class="title"><span>最新评论</span></div>
+
+            {% for comment in latestcommentsarr%}
+            <p>{{comment.content}}</p>
+            <p class="colDanger">评论人:{{comment.nickname}}<span style="float:right">{{comment.postTime|date('y年m月d日',-20*60)}}</span></p>
+            {% endfor %}
+        </div>
+        <!--归档功能-->
         <div class="rightBox">
             <div class="title"><span>归档</span></div>
             <p><a href="/?year=2018" class="colDanger" id="year2018">2018年</a></p>
             <p><a href="/?year=2017" class="colDanger" id="year2017">2017年</a></p>
         </div>
+
+
+
+
+        <!--关于我-->
         <div class="rightBox">
             <div class="title"><span>关于我</span></div>
             <p><a href="" class="colDanger" onclick="alert('wangyongxiaozi@outlook.com')">我的邮箱</a></p>
