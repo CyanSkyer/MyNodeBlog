@@ -3,7 +3,9 @@ body {
   margin: 0px;
   background: #ebebeb;
   font-family: '微软雅黑';
-  font-size: 14px;
+  font-size: 17px;
+  height:100%;
+  width: 100%;
 }
 h1,
 h2,
@@ -16,6 +18,7 @@ h6 {
 button {
   border: none;
 }
+/*注意，这个是设置背景H5的*/
 #Mycanvas{
   position:absolute;z-index:-2;
 }
@@ -129,7 +132,7 @@ button {
   /*background-image: url('/public/images/books.jpg');*/
 }
 header {
-  height: 222px;
+  height: 150px;
   position: relative;
   overflow: hidden;
 }
@@ -162,12 +165,13 @@ header .logo img {
 }
 nav {
   height: 56px;
+  width : 100%;
   border-top: 1px solid #ebebeb;
   border-bottom: 2px solid #e1e1e1;
   background: #fff;
 }
 nav .menu {
-  text-align: center;
+  text-align: left;
 }
 nav .menu a {
   display: inline-block;
@@ -181,18 +185,21 @@ nav .menu a:hover, nav .menu a.focus {
   border-bottom: 2px solid #e67e22;
 }
 main {
-  width: 1140px;
-  margin: 35px auto 0px;
+  /*width: 1500px;*/
+  width:97%;
+  margin: 15px auto 0px;
 }
+
+
 main .mainLeft {
-  width: 750px;
+  width: 74%;
   float: left;
 }
 main .mainLeft .listBox {
   background: #fff;
   padding: 20px 35px;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 main .listBoxMore {
   cursor: pointer;
@@ -219,7 +226,7 @@ main .mainLeft .listBox .function a {
   line-height: 34px;
   border-radius: 3px;
   color: #fff;
-  font-size: 12px;
+  font-size: 15px;
   font-family: '微软雅黑';
   text-decoration: none;
 }
@@ -269,13 +276,13 @@ main .mainLeft .messageBox p {
   margin: 0px;
 }
 main .mainRight {
-  width: 360px;
+  width: 25%;
   float: right;
 }
 main .mainRight .rightBox {
   background: #fff;
   padding: 16px 30px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 main .mainRight .rightBox .title {
   border-bottom: 1px solid #ebebeb;
@@ -312,6 +319,7 @@ main .mainRight .rightBox .line.error em {
   top: 8px;
   right: 25px;
   cursor: pointer;
+  /*已经失效*/
   background: url(../images/close.png) no-repeat center center;
   background-size: 80% 80%;
 }
@@ -345,9 +353,11 @@ dfn {
   text-align: left;
   font-style: normal;
   display: block;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 26px;
 }
+
+
 
 /**
  * 分页
