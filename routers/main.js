@@ -36,6 +36,9 @@ router.get('/' ,function (req ,res ,next) {
         data.limit =4;
         data.pagearr =[];
 
+        //添加年份归档
+        data.year = req.query.year || "";
+
 
     //where用做find的判定条件
     var where = {};
@@ -43,8 +46,16 @@ router.get('/' ,function (req ,res ,next) {
         where.category = data.category;
     }
 
+    //归档年份的逻辑，另外gte是>=，lte是<=
+    var startyear = new Date(2017,0,1);
+    var endyear = new Date();
+    if(data.year){
+        //判定按年份查找
+        startyear = new Date(data.year,0,1);
+        endyear = new Date(data.year,11,31);
+    }
 
-    Content.where(where).count().then(function (count) {
+    Content.where(where).where("addTime").gte(startyear).lte(endyear).count().then(function (count) {
         data.count = count;
         //计算总页数
         data.totalpages = Math.ceil(data.count/data.limit);
@@ -60,7 +71,7 @@ router.get('/' ,function (req ,res ,next) {
             data.pagearr.push(i);
         }
 
-        return Content.where(where).find().sort({addTime : -1}).limit(data.limit).skip(skip).populate(['category' , 'user']);
+        return Content.where(where).where("addTime").gte(startyear).lte(endyear).find().sort({addTime : -1}).limit(data.limit).skip(skip).populate(['category' , 'user']);
     }).then(function (contents) {
         data.contents = contents;
         res.render('main/index' , data);

@@ -4,6 +4,22 @@
 
 {% for content in contents%}
 {% if content.title != '留言板'%}
+
+
+<!--<div class="listBox">-->
+    <!--<h1>{{content.title}}</h1>-->
+    <!--<p class="colDefault">-->
+        <!--分类：<span class="colInfo">{{content.category.name}}</span> - -->
+        <!--作者：<span class="colInfo">{{content.user.nickname}}</span> - -->
+        <!--时间：<span class="colInfo">{{content.addTime|date('y年m月d日h时i分s秒',-20*60)}}</span> - -->
+        <!--阅读：<span class="colInfo">{{content.views}}</span> - -->
+        <!--评论：<span class="colInfo">{{content.comments.length}}</span>-->
+
+    <!--</p>-->
+    <!--<dfn><p>{{content.description}}</p></dfn>-->
+    <!--<div class="function"><a href="/view/?contentId={{content._id.toString()}}">阅读全文</a></div>-->
+<!--</div>-->
+
 <div class="listBox">
     <h1>{{content.title}}</h1>
     <p class="colDefault">
@@ -27,7 +43,7 @@
             {% if page == 1 %}
             <a href="javascript:;">没有上一页了</a>
             {% else%}
-            <a href="/?page={{page-1}}&category={{category}}">上一页</a>
+            <a href="/?page={{page-1}}&category={{category}}&year={{year}}">上一页</a>
             {% endif%}
         </li>
         {% if totalpages >0 %}
@@ -39,7 +55,7 @@
             {% if page >= totalpages %}
             <a href="javascript:;">没有下一页了</a>
             {% else%}
-            <a href="/?page={{page + 1}}&category={{category}}">下一页</a>
+            <a href="/?page={{page + 1}}&category={{category}}&year={{year}}">下一页</a>
             {% endif%}
         </li>
     </ul>
