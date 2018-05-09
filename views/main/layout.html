@@ -105,7 +105,8 @@
         <div class="rightBox">
             <div class="title"><span>最热文章</span></div>
             {% for hotcontent in hotcontents%}
-            <p><a href="/view/?contentId={{hotcontent.id}}" class="colDanger" id="hot">{{hotcontent.title}}</a><span style="float:right">浏览量：{{hotcontent.views}}</span></p>
+            <p><a href="/view/?contentId={{hotcontent.id}}" class="colDeepBlue" id="hot">{{hotcontent.title}}</a></p>
+            <p>作者：{{hotcontent.user.nickname}}<span style="float:right">浏览量：{{hotcontent.views}}</span></p>
 
             {% endfor%}
         </div>
@@ -115,14 +116,14 @@
 
             {% for comment in latestcommentsarr%}
             <p>{{comment.content}}</p>
-            <p class="colDanger">评论人:{{comment.nickname}}<span style="float:right">{{comment.postTime|date('y年m月d日',-20*60)}}</span></p>
+            <p class="colInfo">评论人:{{comment.nickname}}<span style="float:right">{{comment.postTime|date('y年m月d日',-20*60)}}</span></p>
             {% endfor %}
         </div>
         <!--归档功能-->
         <div class="rightBox">
             <div class="title"><span>归档</span></div>
-            <p><a href="/?year=2018" class="colDanger" id="year2018">2018年</a></p>
-            <p><a href="/?year=2017" class="colDanger" id="year2017">2017年</a></p>
+            <p><a href="/?year=2018" class="colBlue" id="year2018">2018年</a></p>
+            <p><a href="/?year=2017" class="colBlue" id="year2017">2017年</a></p>
         </div>
 
 
@@ -131,10 +132,10 @@
         <!--关于我-->
         <div class="rightBox">
             <div class="title"><span>关于我</span></div>
-            <p><a href="" class="colDanger" onclick="alert('wangyongxiaozi@outlook.com')">我的邮箱</a></p>
-            <p><a href="/explanation" class="colDanger" id="explanation">使用手册与更新</a></p>
-            <p><a href="/messboard" class="colDanger" id="messboard">留言板</a></p>
-            <p class="colDanger">友情链接：<a href="https://attacker.cc" >云袭2001</a></p>
+            <p><a href="" class="colDeepBlue" onclick="alert('wangyongxiaozi@outlook.com')">我的邮箱</a></p>
+            <p><a href="/explanation" class="colDeepBlue" id="explanation">使用手册与更新</a></p>
+            <p><a href="/messboard" class="colDeepBlue" id="messboard">留言板</a></p>
+            <p class="colDeepBlue">友情链接：<a href="https://attacker.cc" >云袭2001</a></p>
         </div>
     </div>
 

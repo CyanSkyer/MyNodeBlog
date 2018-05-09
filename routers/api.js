@@ -185,22 +185,32 @@ router.get('/comment',function (req ,res) {
 router.post('/comment/post',function (req , res) {
     //本文章的id
     var contentId = req.body.contentId;
-    var postData = {
-        nickname : req.userInfo.nickname,
-        postTime : new Date(),
-        content : req.body.content, //评论的内容
-    }
-    //查询当前文章的信息
-    Content.findOne({
-        _id : contentId
-    }).then(function (content) {
-        content.comments.push(postData);
-        return content.save();
-    }).then(function (newContent) {
-        responseData.message = '评论成功'
-        responseData.newContent = newContent;
+
+    var postContent =req.body.content;
+    if(postContent.length>20){
+        responseData.message = '评论太长';
         res.json(responseData);
-    })
+    } else{
+        var postData = {
+            nickname : req.userInfo.nickname,
+            postTime : new Date(),
+            content : req.body.content, //评论的内容
+        }
+        //查询当前文章的信息
+        Content.findOne({
+            _id : contentId
+        }).then(function (content) {
+            content.comments.push(postData);
+            return content.save();
+        }).then(function (newContent) {
+            responseData.message = '评论成功'
+            responseData.newContent = newContent;
+            res.json(responseData);
+        })
+    }
+
+
+
 })
 
 module.exports = router;

@@ -3,7 +3,7 @@
  */
 
 
-var limit = 4 ;//一次显示4条评论
+var limit = 8 ;//一次显示4条评论
 var page =1; //当前第几页
 var totalpages=0 ;//总的页数
 
@@ -19,9 +19,14 @@ $('#messageBtn').on('click',function () {
             content :$('#messageContent').val()
         },
         success:function (responseData) {
-            $('#messageContent').val('');
-            myComments = responseData.newContent.comments.reverse();
-            renderComment();
+            if(responseData.message == '评论太长'){
+                alert("您的评论太长了，最多20个字噢");
+                $('#messageContent').val('');
+            }else{
+                $('#messageContent').val('');
+                myComments = responseData.newContent.comments.reverse();
+                renderComment();
+            }
         }
     })
 })
