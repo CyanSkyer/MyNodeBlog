@@ -1,6 +1,7 @@
 # MyNodeBlog
 这是一个基于Node.js的简单博客系统
 访问地址：http://118.89.225.53/
+(服务器到期了访问不了了)
 
 使用了expree作为前端，mongodb作为数据库进行处理，ueditor作为富文本编辑器
 1
